@@ -62,18 +62,18 @@ func main() {
 
 	total := len(validators.Validators)
 
-	res := `"res": [`
+	res := `{"res": [`
 	for i, v := range validators.Validators {
-		res = res + `{"operator_address:"` + v.OperatorAddress + `,`
+		res = res + `{"operator_address":"` + v.OperatorAddress + `",`
 		address, err := pubkeyToValCons(v.ConsensusPubKey.Key)
 		if err != nil {
 			panic("error converting pubkey to address")
 		}
-		res = res + `"consensus_address:"` + address + `}`
+		res = res + `"consensus_address":"` + address + `"}`
 		if i != total-1 {
 			res = res + `,`
 		}
 	}
-	res = res + `]`
+	res = res + `]}`
 	fmt.Println(res)
 }
